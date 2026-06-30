@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account | RIPARADISE</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+/* ACCOUNT PAGE SPECIFIC STYLES */
+body { 
+  background-color: #fff; 
+  color: #000; 
+  font-family: 'Inter', sans-serif; 
+}
+
+/* PREMIUM HEADER (Same as Homepage) */
+.account-page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 1000;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-page-header__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition: opacity 0.2s ease; /* Smooth fade effect */
+}
+
+.account-page-header__logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Hover effect - nandito na siya sa tamang parent class */
+.account-page-header__logo:hover {
+  opacity: 0.7;
+}
+
+.account-container {
+  max-width: 1100px;
+  margin: 140px auto 80px;
+  padding: 0 20px;
+  min-height: 60vh;
+}
+    
+    /* OBEY-INSPIRED LAYOUT */
+    .account-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      padding-top: 20px;
+    }
+    
+    .account-sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+    
+    .account-nav-item {
+      display: block;
+      padding: 16px 0;
+      color: #888;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+      border-left: 2px solid transparent;
+      padding-left: 0;
+    }
+    
+    .account-nav-item:hover,
+    .account-nav-item.active {
+      color: #000;
+      border-left-color: #000;
+      padding-left: 12px;
+    }
+    
+    .account-main {
+      padding-bottom: 60px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    /* EDITABLE SECTIONS (OBEY STYLE) */
+    .account-section-card {
+      margin-bottom: 40px;
+      padding: 0;
+    }
+    
+    .account-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .account-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #000;
+    }
+    
+    .btn-edit {
+      background: transparent;
+      border: 1px solid #ddd;
+      padding: 8px 20px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+    
+    .btn-edit:hover {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+    
+    .account-info-box {
+      background: #f9f9f9;
+      padding: 24px;
+      border-radius: 4px;
+    }
+    
+    .info-row {
+      display: flex;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    .info-row:last-child {
+      margin-bottom: 0;
+    }
+    
+    .info-label {
+      font-weight: 600;
+      min-width: 120px;
+      color: #000;
+    }
+    
+    .info-value {
+      color: #666;
+      flex: 1;
+    }
+    
+    /* EDIT MODE INPUTS */
+    .edit-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #e5e5e5;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      transition: all 0.2s;
+    }
+    
+    .edit-input:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 0 1px #000;
+    }
+    
+    .edit-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    
+    .btn-save {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: opacity 0.2s;
+    }
+    
+    .btn-save:hover {
+      opacity: 0.85;
+    }
+    
+    .btn-cancel {
+      background: transparent;
+      color: #666;
+      border: 1px solid #ddd;
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+    
+    .btn-cancel:hover {
+      border-color: #000;
+      color: #000;
+    }
+    
+    /* ORDERS */
+    .order-card {
+      border: 1px solid #e5e5e5;
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: box-shadow 0.2s;
+      border-radius: 4px;
+    }
+    
+    .order-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .order-number {
+      font-weight: 700;
+      font-size: 14px;
+    }
+    
+    .order-date {
+      color: #666;
+      font-size: 12px;
+    }
+    
+    .order-status {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #000;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 2px;
+    }
+    
+    .order-items {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .order-total {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #f0f0f0;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: right;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #888;
+      font-size: 14px;
+      border: 1px dashed #ddd;
+      border-radius: 4px;
+    }
+    
+    /* LOGOUT BUTTON */
+    .btn-logout {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: transparent;
+      border: 1px solid #000;
+      padding: 10px 24px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+      z-index: 1001;
+    }
+    
+    .btn-logout:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    /* MOBILE */
+@media (max-width: 768px) {
+  .account-page-header {
+    height: 64px;
+  }
+
+  .account-page-header__logo {
+    height: 64px;
+  }
+
+  .account-page-header__logo img {
+    height: 64px !important;
+    width: auto;
+  }
+
+  .account-container {
+    margin: 80px auto 60px;
+    padding: 0 16px;
+  }
+
+  .account-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 0;
+  }
+
+  .account-sidebar {
+    position: static;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 0;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .account-nav-item {
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    padding-left: 0;
+    padding-right: 20px;
+    padding-bottom: 14px;
+    font-size: 11px;
+  }
+
+  .account-nav-item.active {
+    border-left: none;
+    border-bottom-color: #000;
+    padding-left: 0;
+  }
+
+  .btn-logout {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    font-size: 10px;
+    margin-top: 0;
+  }
+}
+    /* PREMIUM ACCOUNT PAGE ENTRANCE ANIMATIONS */
+    .account-container {
+      animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+
+    .account-sidebar {
+      animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+      opacity: 0;
+    }
+
+    .account-main > section {
+      animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Staggered card animations for orders/addresses */
+    .order-card, .account-section-card {
+      animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+    
+    .order-card:nth-child(1), .account-section-card:nth-child(1) { animation-delay: 0.3s; }
+    .order-card:nth-child(2), .account-section-card:nth-child(2) { animation-delay: 0.4s; }
+    .order-card:nth-child(3), .account-section-card:nth-child(3) { animation-delay: 0.5s; }
+  </style>
+</head>
+<body>
+
+  <!-- PREMIUM HEADER WITH LOGO -->
+  <header class="account-page-header">
+    <a href="index.html" class="account-page-header__logo">
+      <img src="assets/images/riparadiselogoupdated.png" alt="RIPARADISE" style="height: 150px; width: auto;">
+    </a>
+  </header>
+
+  <!-- LOGOUT BUTTON -->
+  <button onclick="handleLogout()" class="btn-logout">Log Out</button>
+
+  <div class="account-container">
+    <div class="account-layout">
+      <!-- SIDEBAR NAVIGATION -->
+      <aside class="account-sidebar">
+        <nav>
+          <a href="#overview" class="account-nav-item active" onclick="showSection('overview', this)">Overview</a>
+          <a href="#orders" class="account-nav-item" onclick="showSection('orders', this)">Order History</a>
+          <a href="#addresses" class="account-nav-item" onclick="showSection('addresses', this)">Addresses</a>
+        </nav>
+      </aside>
+      
+      <!-- MAIN CONTENT -->
+      <main class="account-main">
+        
+        <!-- OVERVIEW SECTION -->
+        <section id="overview" class="account-section active">
+          <h2 class="section-title">Account Details</h2>
+          
+          <!-- CONTACT INFORMATION (EDITABLE) -->
+          <div class="account-section-card">
+            <div class="account-section-header">
+              <h3 class="account-section-title">Contact</h3>
+              <button onclick="toggleEdit('email')" class="btn-edit" id="btnEditEmail">Edit</button>
+            </div>
+            
+            <div class="account-info-box" id="emailView">
+              <div class="info-row">
+                <span class="info-label">Email:</span>
+                <span class="info-value" id="displayEmail">-</span>
+              </div>
+            </div>
+            
+            <!-- EDIT MODE (Hidden by default) -->
+            <div class="account-info-box" id="emailEdit" style="display: none;">
+              <input type="email" class="edit-input" id="editEmailInput" placeholder="Enter new email">
+              <div class="edit-actions">
+                <button onclick="saveEmail()" class="btn-save">Save Changes</button>
+                <button onclick="cancelEdit()" class="btn-cancel">Cancel</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- MEMBER INFO -->
+          <div class="account-section-card">
+            <div class="account-section-header">
+              <h3 class="account-section-title">Member Information</h3>
+            </div>
+            <div class="account-info-box" id="userInfo"></div>
+          </div>
+        </section>
+        
+        <!-- ORDERS SECTION -->
+        <section id="orders" class="account-section">
+          <h2 class="section-title">Order History</h2>
+          <div id="orderList">
+            <div class="empty-state">No orders yet. Start shopping to see your history here.</div>
+          </div>
+        </section>
+        
+        <!-- ADDRESSES SECTION -->
+        <section id="addresses" class="account-section">
+          <h2 class="section-title">Addresses</h2>
+          <div class="account-section-card">
+            <div class="account-section-header">
+              <h3 class="account-section-title">Saved Addresses</h3>
+              <button class="btn-edit">Add</button>
+            </div>
+            <div class="empty-state">No addresses added</div>
+          </div>
+        </section>
+        
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // PAGE TRANSITION OVERLAY
+    const transitionOverlay = document.createElement('div');
+    transitionOverlay.id = 'page-transition-overlay';
+    transitionOverlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      z-index: 99999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease-in-out;
+    `;
+    document.body.appendChild(transitionOverlay);
+
+    // AUTH CHECK WITH TRANSITION
+    const user = JSON.parse(localStorage.getItem('rip_user'));
+    if (!user) {
+      transitionOverlay.style.opacity = '1';
+      setTimeout(() => { window.location.href = 'index.html'; }, 400);
+    } else {
+      // Populate User Info
+      document.getElementById('userInfo').innerHTML = `
+        <div class="info-row">
+          <span class="info-label">Name:</span>
+          <span class="info-value">${user.name || 'N/A'}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Member Since:</span>
+          <span class="info-value">${new Date(user.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        </div>
+      `;
+      
+      document.getElementById('displayEmail').textContent = user.email;
+
+      // Load Orders
+      const userOrders = JSON.parse(localStorage.getItem(`orders_${user.email}`)) || [];
+      const orderListEl = document.getElementById('orderList');
+      
+      if (userOrders.length > 0) {
+        orderListEl.innerHTML = userOrders.map(order => `
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <div class="order-number">${order.id}</div>
+                <div class="order-date">${order.date}</div>
+              </div>
+              <span class="order-status">${order.status}</span>
+            </div>
+            <div class="order-items">${order.items}</div>
+            <div class="order-total">Total: ${order.total}</div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // SECTION NAVIGATION
+    function showSection(sectionId, element) {
+      document.querySelectorAll('.account-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.account-nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      element.classList.add('active');
+    }
+
+    // TOGGLE EDIT MODE
+    function toggleEdit(field) {
+      if (field === 'email') {
+        document.getElementById('emailView').style.display = 'none';
+        document.getElementById('emailEdit').style.display = 'block';
+        document.getElementById('editEmailInput').value = user.email;
+        document.getElementById('btnEditEmail').textContent = 'Cancel';
+        document.getElementById('btnEditEmail').onclick = () => cancelEdit();
+      }
+    }
+
+    // CANCEL EDIT
+    function cancelEdit() {
+      document.getElementById('emailView').style.display = 'block';
+      document.getElementById('emailEdit').style.display = 'none';
+      document.getElementById('btnEditEmail').textContent = 'Edit';
+      document.getElementById('btnEditEmail').onclick = () => toggleEdit('email');
+    }
+
+    // SAVE EMAIL
+    function saveEmail() {
+      const newEmail = document.getElementById('editEmailInput').value.trim();
+      if (!newEmail) { alert('Please enter a valid email'); return; }
+      if (newEmail === user.email) { alert('Email is the same as current'); cancelEdit(); return; }
+      
+      const users = JSON.parse(localStorage.getItem('rip_users')) || [];
+      if (users.find(u => u.email === newEmail)) { alert('Email already registered'); return; }
+      
+      user.email = newEmail;
+      localStorage.setItem('rip_user', JSON.stringify(user));
+      
+      const userIndex = users.findIndex(u => u.email === user.email);
+      if (userIndex > -1) {
+        users[userIndex] = user;
+        localStorage.setItem('rip_users', JSON.stringify(users));
+      }
+      
+      document.getElementById('displayEmail').textContent = newEmail;
+      alert('Email updated successfully!');
+      cancelEdit();
+    }
+
+    // LOGOUT WITH TRANSITION
+    function handleLogout() {
+      transitionOverlay.style.opacity = '1';
+      setTimeout(() => {
+        localStorage.removeItem('rip_user');
+        window.location.href = 'index.html';
+      }, 400);
+    }
+
+    // INTERCEPT ALL INTERNAL LINKS FOR SMOOTH TRANSITION
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href]');
+      if (link && !link.href.includes('#') && !link.target && link.hostname === window.location.hostname) {
+        e.preventDefault();
+        transitionOverlay.style.opacity = '1';
+        setTimeout(() => { window.location.href = link.href; }, 400);
+      }
+    });
+    
+  </script>
+</body>
+</html>

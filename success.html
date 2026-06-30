@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmed | RIPARADISE</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .success-box { text-align: center; padding: 60px 40px; }
+    .success-box h1 { font-size: 24px; margin-bottom: 16px; }
+    .success-box p { color: var(--color-text-muted); margin-bottom: 30px; }
+    .success-box a { 
+      background: var(--color-primary); color: var(--color-primary-inverse);
+      padding: 14px 32px; text-decoration: none; font-weight: 700; font-size: 12px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-box">
+    <h1>✅ Payment Confirmed!</h1>
+    <p>Thank you for your order. We'll contact you shortly.</p>
+    <a href="index.html">BACK TO HOME</a>
+  </div>
+  <script>
+    localStorage.removeItem('rip_cart');
+    localStorage.removeItem('rip_pending_order');
+  </script>
+</body>
+</html>

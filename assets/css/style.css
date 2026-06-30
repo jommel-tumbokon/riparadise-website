@@ -1,0 +1,2265 @@
+/* ==========================================================================
+   RIPARADISE — Unified Premium White & Black Aesthetic (Phase 4 Clean)
+   Brand Identity Storefront Layout · Smart Sticky White Header Fix
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS (ROOT VARIABLES - CHANGED TO HIGH-CONTRAST LIGHT MODE)
+   -------------------------------------------------------------------------- */
+   :root {
+    /* Colors - Inverted for Luxury White/Black Style */
+    --color-bg: #ffffff;                  /* Puti na ang main background */
+    --color-bg-elevated: #f9f9f9;
+    --color-bg-overlay: rgba(0, 0, 0, 0.45);
+    --color-surface: #ffffff;
+    --color-text: #000000;                /* Solid black ang lahat ng teksto */
+    --color-text-muted: #666666;          /* Mas madilim na gray para madaling basahin */
+    --color-primary: #000000;             /* Black primary button blocks */
+    --color-primary-inverse: #ffffff;     /* White text sa loob ng primary buttons */
+    --color-accent: #000000;
+    --color-border: rgba(0, 0, 0, 0.1);
+    --color-border-strong: rgba(0, 0, 0, 0.2);
+    --color-announcement-bg: #000000;
+    --color-announcement-text: #ffffff;
+    --color-header-scrolled-bg: #ffffff;  /* Puti ang magiging bar kapag nag-scroll up */
+  
+    /* Typography */
+    --font-family: "Inter", system-ui, -apple-system, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: clamp(2rem, 6vw, 4rem);
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-wide: 0.15em;
+  
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --header-height: 80px;
+  
+    /* Layers (Z-Index) */
+    --z-hero-media: 1;
+    --z-hero-overlay: 2;
+    --z-hero-content: 3;
+    --z-header: 999;                      /* Pinatigas para hindi lumusot ang mga damit */
+    --z-announcement: 1000;
+    --z-mobile-nav: 9999;
+  }
+  
+  /* --------------------------------------------------------------------------
+     2. GLOBAL RESETS & BASE STYLES
+     -------------------------------------------------------------------------- */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  body {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  img, video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  button, input {
+    font: inherit;
+    color: inherit;
+  }
+  
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-sm);
+  }
+  
+  /* Reusable Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2rem;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-primary-inverse);
+  }
+  
+  .btn--primary:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  
+  .icon {
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+  }
+  
+  /* --------------------------------------------------------------------------
+     3. SITE HEADER & NAVIGATION (DEFAULT: TRANSPARENT WHITE OVER HERO VIDEO)
+     -------------------------------------------------------------------------- */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: var(--z-header);
+    color: #ffffff; /* Piliting puti muna habang nasa ibabaw ng madilim na video background */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+  }
+  
+  .site-nav__list {
+    display: flex;
+    gap: var(--space-md);
+  }
+  
+  .site-nav__link {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+  }
+  
+  .site-nav__link:hover {
+    opacity: 1;
+  }
+  
+  .site-header__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  /* HETO ANG MAGPAPALIIT SA UPDATED LOGO MO, PARE: */
+.site-header__logo-img {
+  height: 150px;        /* Palitan mo 'to (gaya ng 30px o 40px) depende sa tamang timpla sa mata mo */
+  width: auto;         /* Proteksyon para hindi mayupi o ma-distort ang logo natin */
+  display: block;
+  object-fit: contain; /* Sinisigurado nitong pasok na pasok ang image sa itinakdang height */
+}
+
+  /* SITE HEADER ICON BUTTONS — global, applies to all screen sizes */
+.site-header__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+/* Line 222 — dagdagan lang ng position: relative */
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative; /* ← DAGDAG */
+}
+
+.site-header__cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: inherit;
+}
+  
+  /* Siguraduhing sumusunod sa puting stroke ang default header icons sa video overlay */
+  .site-header .icon {
+    stroke: #ffffff;
+    transition: stroke 0.3s ease-in-out;
+  }
+  
+  /* Hide mobile/drawer layouts on desktop view by default */
+  .nav-toggle, .nav-toggle-btn, .mobile-nav, .site-header__icon-btn--desktop-only {
+    display: none;
+  }
+  
+  /* ============================================================
+     SMART STICKY HEADER STATES (INTELLIGENT RESPONSIVENESS)
+     ============================================================ */
+  /* Kakagat 'to kapag nag-scroll down pagkatapos ng video (itataas ang header para magtago) */
+  .site-header--hidden {
+    transform: translateY(-100%);
+  }
+  
+  /* Kakagat 'to kapag nag-scroll up: Magiging White Background bar na may Black Links/Icons */
+  .site-header--scrolled {
+    background-color: var(--color-header-scrolled-bg) !important;
+    color: #000000 !important; /* Itim na ang teksto at logo */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important; /* Eleganteng manipis na anino */
+  }
+  
+  /* Palitan ang icon stroke kapag naka-white scrolled background na */
+  .site-header--scrolled .icon {
+    stroke: #000000 !important;
+  }
+  
+  /* Baguhin ang kulay ng burger bars sa mobile button kapag white na ang background */
+  .site-header--scrolled .nav-toggle-btn__bar {
+    background-color: #000000 !important;
+  }
+  
+  /* --------------------------------------------------------------------------
+     4. HERO SECTION & CINEMATIC BACKGROUND VIDEO HERO (REPRESENT/RIPARADISE STYLE)
+     -------------------------------------------------------------------------- */
+  .hero-video-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000; /* Solido habang naglo-load pa ang mabigat na mp4 file */
+  }
+  
+  .hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: 1;
+  }
+  
+  .hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); /* 45% Cinematic dark filter para litaw ang text links */
+    z-index: 2;
+  }
+  
+  .hero-video-content {
+    position: relative;
+    z-index: 3; 
+    text-align: center;
+    color: #ffffff !important; /* Laging puti kahit magbago ang global body style niyo */
+    padding: 0 20px;
+  }
+  
+  .hero-video-subtitle {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #ffffff !important;
+  }
+  
+  .hero-video-title {
+    font-size: 46px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    color: #ffffff !important;
+  }
+  
+  .hero-video-btn {
+    display: inline-block;
+    padding: 12px 34px;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .hero-video-btn:hover {
+    background-color: #ffffff;
+    color: #000000 !important;
+  }
+  
+  /* Old Template Hero Setup Safe Fallback System */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    overflow: hidden;
+  }
+  .hero__media-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-hero-media);
+  }
+  .hero__media, .hero_media {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;      
+    object-position: center center !important; 
+  }
+  .hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(5,5,5,0.7) 100%);
+    z-index: var(--z-hero-overlay);
+  }
+  .hero__content {
+    position: relative;
+    z-index: var(--z-hero-content);
+    text-align: center;
+    padding: 0 var(--space-md);
+    margin-top: auto; 
+    margin-bottom: var(--space-xl);
+  }
+  .hero__eyebrow {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: #ffffff;
+    margin-bottom: var(--space-xs);
+  }
+  .hero__title {
+    font-size: var(--font-size-xl);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-tight);
+    margin: 0 0 var(--space-md) 0;
+    color: #ffffff;
+  }
+  
+  /* --------------------------------------------------------------------------
+     5. FEATURED PRODUCTS & GRID SYSTEM (CLEAN BLACK ON WHITE)
+     -------------------------------------------------------------------------- */
+  .shop-section {
+    padding: var(--space-xl) 0;
+    background-color: #ffffff !important;
+  }
+  
+  .section-header {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .section-header__eyebrow {
+    margin: 0 0 var(--space-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+  
+  .section-header__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+  
+  .section-header__title {
+    margin: 0;
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-tight);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: #000000 !important;
+  }
+  
+  .section-header__link {
+    flex-shrink: 0;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000000;
+    color: #000000 !important;
+  }
+  /* ==========================================================================
+   PRODUCT GRID: BASE STYLES (Eto ang default para sa Mobile)
+   ========================================================================== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: var(--space-md) var(--space-sm);
+  
+  /* BAGO: Naglagay tayo ng safe space sa gilid para sa Mobile screen */
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box; /* Para hindi sumabog ang sukat ng grid */
+}
+
+.product-card {
+  position: relative;
+}
+
+.product-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background-color: #ffffff; /* Light gray box para lumutang agad ang mockups niyo */
+  overflow: hidden;
+  margin-bottom: var(--space-sm);
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.05);
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 2;
+}
+
+.product-card__badge--muted {
+  background-color: #e5e5e5;
+  color: #000000;
+}
+
+.product-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-card__title {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: #000000 !important;
+}
+
+.product-card__meta {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.product-card__price {
+  margin: 4px 0 0 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: #000000 !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. MEDIA QUERIES (DESKTOP GRID & SCREEN SYSTEM)
+   -------------------------------------------------------------------------- */
+   @media (min-width: 768px) {
+    /* Expand products into 4 columns on desktop viewports */
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1300px;
+      margin: 0 auto !important;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .site-header__icon-btn--desktop-only {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+      vertical-align: middle;
+    }   /* ← TAMA NANG NAKASARA */
+  
+    .site-footer__bottom-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xl);
+    }
+  
+    .site-footer__legal-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-md) var(--space-xl);
+    }
+  
+    /* NEW: Half-width layout for Newsletter on Desktop */
+    .site-footer__main {
+      flex-direction: row !important;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  
+    .site-footer__newsletter-wrapper {
+      width: 45%; /* Half width container */
+    }
+  
+    .site-footer__social {
+      margin-top: 0;
+    }
+  }
+  
+  /* --------------------------------------------------------------------------
+     6. SITE FOOTER SECTION (MINIMALIST / REFERENCE STYLE)
+     -------------------------------------------------------------------------- */
+  .site-footer {
+    background-color: #ffffff !important;
+    border-top: 1px solid #e5e5e5;
+    padding: var(--space-xl) 0 var(--space-md);
+    color: #000000 !important;
+  }
+  
+  .site-footer__main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .site-footer__heading {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin: 0 0 24px 0;
+    color: #000000 !important;
+    font-weight: 600;
+  }
+  
+  /* Modern Form Styling */
+  .modern-newsletter-form {
+    position: relative;
+    width: 100%;
+  }
+  
+  .modern-newsletter-form__label {
+    position: absolute;
+    left: 0;
+    top: -30px;
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    pointer-events: none;
+  }
+  
+  .modern-newsletter-form__fields {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 12px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .modern-newsletter-form__fields:focus-within {
+    border-color: #000000;
+  }
+  
+  .modern-newsletter-form__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px;
+    color: #000000;
+    padding: 0;
+  }
+  
+  .modern-newsletter-form__input::placeholder {
+    color: #aaa;
+  }
+  
+  /* Animated Arrow Button */
+  .modern-newsletter-form__submit {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .modern-newsletter-form__submit svg {
+    transition: stroke 0.3s ease;
+  }
+  
+  /* Hover Animation: Slide right slightly */
+  .modern-newsletter-form__submit:hover {
+    transform: translateX(6px);
+  }
+  
+  .modern-newsletter-form__submit:hover svg {
+    stroke-width: 2.5;
+  }
+  
+  /* Social Links Spacing */
+  .social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .social-links__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000 !important;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .social-links__link:hover {
+    opacity: 1;
+  }
+  
+  /* Ensure SVG icons are black */
+  .social-links__link svg,
+  .social-links__link .icon {
+    stroke: #000000 !important;
+  }
+  
+  .site-footer__bottom {
+    border-top: 1px solid #e5e5e5;
+    padding-top: var(--space-md);
+  }
+  
+  .site-footer__bottom-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    text-align: center;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+  
+  .site-footer__bottom-inner a {
+    color: #000000 !important;
+  }
+  
+  /* --------------------------------------------------------------------------
+     8. MOBILE DRAWER & SAFEGUARDS SYSTEM (UNDER 768PX)
+     -------------------------------------------------------------------------- */
+  @media (max-width: 768px) {
+    .site-nav {
+      display: none; 
+    }
+  
+    .nav-toggle-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 24px;
+      cursor: pointer;
+    }
+  
+    /* Default burger bars inside hero video area */
+    .nav-toggle-btn__bar {
+      width: 100%;
+      height: 2px;
+      background-color: #ffffff; 
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+  
+    .hero-video-section {
+      height: 85vh; /* Ginawang 85vh sa mobile para may silip agad ang items sa ilalim */
+    }
+    
+    .hero-video-title {
+      font-size: 32px;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    
+    .hero-video-subtitle {
+      font-size: 11px;
+    }
+  
+    .hero__title {
+      line-height: 1.2 !important;
+      margin-bottom: 1rem !important;
+      letter-spacing: -0.02em !important;
+    }
+  
+    .hero__eyebrow {
+      font-size: 0.85rem !important;
+      letter-spacing: 0.15em !important;
+      margin-bottom: 0.4rem !important;
+    }
+  
+    .hero__content {
+      padding: 0 20px !important;
+      text-align: center !important;
+      margin-bottom: var(--space-lg);
+    }
+  
+    .hero__media, .hero_media {
+      object-fit: contain !important;
+      width: 100% !important;
+      height: 100% !important;
+      position: relative !important;
+      transform: none !important;
+      left: 0 !important;
+    }
+  
+    .site-header__logo-img {
+      max-width: 130px; 
+      height: auto;     
+    }
+  
+    .site-header__logo {
+      display: inline-block;
+      max-width: 140px;
+      z-index: 10;      
+    }
+  }
+  
+  /* PREMIUM WHITE MOBILE DRAWER SETTINGS */
+  .nav-toggle {
+    display: none;
+  }
+  
+  .nav-toggle:checked ~ .mobile-nav {
+    transform: translateX(0);
+  }
+  
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;            
+    max-width: 360px;       
+    height: 100vh;
+    background-color: #ffffff; 
+    z-index: 9999;
+    display: flex;
+    flex-direction: column; 
+    padding: 24px 32px;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15); 
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .mobile-nav__header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+  }
+  
+  .mobile-nav__close {
+    color: #000000;
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  
+  .mobile-nav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mobile-nav__list li {
+    border-bottom: 1px solid #e5e5e5; 
+  }
+  
+  .mobile-nav__link {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 22px 0;                
+    color: #000000;                 
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;      
+    letter-spacing: 1.5px;
+  }
+  
+  .mobile-nav__arrow {
+    font-size: 16px;
+    color: #000000;
+  }
+  
+  .mobile-nav__bottom {
+    margin-top: auto;        
+    padding-bottom: 20px;    
+  }
+  
+  .mobile-nav__socials {
+    display: flex;
+    gap: 24px; 
+    align-items: center;
+  }
+  
+  .mobile-nav__socials a {
+    color: #000000; 
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+  }
+  
+  .mobile-nav__socials a svg {
+    stroke: #000000 !important;
+  }
+  
+  .mobile-nav__socials a:hover {
+    opacity: 0.5;
+  }
+  /* ============================================================
+   RIPARADISE MODAL QUICK VIEW & SIZE CHART SYSTEM
+   ============================================================ */
+
+/* Overlay Background covering full screen */
+.p-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99999; /* Siguradong nakapaibabaw sa lahat */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  padding: 15px;
+}
+
+/* Kakagat ang class na ito kapag binuksan via JS */
+.p-modal-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal Box Core Container */
+.p-modal-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 850px;
+  max-height: 90vh;
+  position: relative;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Close Button (X mark) */
+.p-modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  color: #000000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+}
+
+/* Layout Splitter Grid */
+.p-modal-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  max-height: 90vh;
+}
+
+@media (min-width: 768px) {
+  .p-modal-layout {
+    grid-template-columns: 1.1fr 1fr; /* Split view sa Desktop */
+  }
+}
+
+/* Left Media Container */
+.p-modal-media {
+  position: relative;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-modal-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 45vh;
+}
+
+@media (min-width: 768px) {
+  .p-modal-media img {
+    max-height: 90vh;
+  }
+}
+
+.p-modal-img-badge {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 4px 10px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* Right Details Text Panel (Scrollable Section) */
+.p-modal-details {
+  padding: 40px 30px;
+  overflow-y: auto; /* Dito papasok ang scroll feature */
+  max-height: 45vh;
+  background-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .p-modal-details {
+    max-height: 90vh;
+  }
+}
+
+.p-modal-title {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px 0;
+  color: #000000;
+  padding-right: 20px;
+}
+
+.p-modal-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.p-modal-stock-status {
+  font-size: 12px;
+  color: #27ae60;
+  margin: 0;
+  font-weight: 500;
+}
+
+.p-modal-divider {
+  border: 0;
+  border-top: 1px solid #eaeaea;
+  margin: 20px 0;
+}
+
+/* Size System Layout */
+.p-size-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.p-section-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #000000;
+}
+
+.p-size-chart-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+
+.p-ruler-icon {
+  display: inline-block;
+}
+
+/* Custom Checkbox Boxes for Sizes (S, M, L, XL) */
+.p-size-options-grid {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.p-size-box {
+  cursor: pointer;
+  flex: 1;
+  max-width: 60px;
+}
+
+.p-size-box input {
+  display: none; /* Itago ang default bilog na radio input */
+}
+
+.p-size-box span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border: 1px solid #e5e5e5;
+  color: #000000;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* Kapag napili ang Size (Inverted Solid Black Style gaya ng layout niyo) */
+.p-size-box input:checked + span {
+  border-color: #000000;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Action Bar Configuration (Quantity + Add Button) */
+.p-action-row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.p-quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e5e5;
+  height: 50px;
+}
+
+.p-qty-btn {
+  width: 40px;
+  height: 100%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+}
+
+.p-qty-input {
+  width: 40px;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  -moz-appearance: textfield;
+}
+.p-qty-input::-webkit-outer-spin-button,
+.p-qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Add to bag Button (Lupit! No heart icon space, fully broad button) */
+.p-add-to-bag-btn {
+  flex-grow: 1;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  height: 50px;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.p-add-to-bag-btn:hover {
+  opacity: 0.85;
+}
+
+/* Size Chart Table System (Adult Standard) */
+.p-size-chart-section {
+  padding-top: 10px;
+}
+
+.p-chart-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: #000000;
+  letter-spacing: 0.5px;
+}
+
+.p-chart-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12px;
+}
+
+.p-chart-table th, .p-chart-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eaeaea;
+  color: #000000;
+}
+
+.p-chart-table th {
+  font-weight: 600;
+  background-color: #f9f9f9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+/* ============================================================
+   RIPARADISE MODERN TOAST NOTIFICATION STYLE
+   ============================================================ */
+   .rip-toast {
+    position: fixed;
+    bottom: 30px;
+    right: -400px; /* Nakatago muna sa labas ng screen */
+    background-color: #000000;
+    color: #ffffff;
+    padding: 16px 24px;
+    min-width: 300px;
+    max-width: 380px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 100000; /* Mas mataas pa sa modal */
+    border: 1px solid #333333;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  /* Kakagat ito kapag pinatakbo ng JavaScript */
+  .rip-toast.show {
+    right: 30px;
+  }
+  
+  .rip-toast-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .rip-toast-checkmark {
+    font-size: 18px;
+    color: #27ae60;
+    font-weight: bold;
+  }
+  
+  .rip-toast-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .rip-toast-msg {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  .rip-toast-sub {
+    font-size: 13px;
+    color: #aaaaaa;
+    margin-top: 2px;
+  }
+  /* ============================================================
+   RIPARADISE CART DROPDOWN STYLES (WITH PREMIUM ANIMATION)
+   ============================================================ */
+.rip-cart-dropdown {
+  position: fixed;
+  top: 80px; /* I-adjust depende sa taas ng header mo */
+  right: 20px;
+  width: 360px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+
+  /* HETO ANG THE "HIHIGUPIN" MECHANICS, PARE: */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.7) translateY(-30px); /* Maliit at naka-angat nang bahagya */
+  transform-origin: top right; /* Hihigupin siya pabalik sa direksyon ng Cart Icon sa kanan */
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Swabeng transition speed */
+}
+
+/* Kakabit ito kapag tinoggle ang cart via JavaScript */
+.rip-cart-dropdown.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0); /* Bababa at lalaki sa orihinal na sukat */
+}
+
+.rip-cart-dropdown__body {
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.rip-cart-empty {
+  text-align: center;
+  padding: 30px 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #777;
+}
+
+/* Item Row Styling */
+.rip-dropdown-item {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.rip-dropdown-item__img img {
+  width: 65px;
+  height: 75px;
+  object-fit: cover;
+  background: #f7f7f7;
+}
+
+.rip-dropdown-item__details {
+  flex: 1;
+}
+
+.rip-dropdown-item__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 4px 0;
+}
+
+.rip-dropdown-item__variant {
+  font-size: 11px;
+  color: #666;
+  margin: 0 0 8px 0;
+}
+
+/* - 1 + Buttons Area */
+.rip-dropdown-item__qty-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  width: max-content;
+}
+
+.rip-dropdown-item__qty-control button {
+  background: none;
+  border: none;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* FIX FOR CART DROPDOWN QUANTITY VISIBILITY */
+.rip-dropdown-qty-num {
+  color: #000000 !important;       /* Piliting itim ang numero */
+  font-weight: 600 !important;     /* Bold para litaw */
+  font-size: 12px !important;      /* Match sa existing design */
+  display: flex !important;        /* Para ma-center perfectly */
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;       /* Iwas sa extra spacing */
+  min-width: 20px !important;      /* Mas maluwag na space kaysa sa 15px */
+}
+
+/* Right Side: Delete & Price */
+.rip-dropdown-item__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.rip-dropdown-item__remove {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.rip-dropdown-item__remove:hover {
+  color: #000;
+}
+
+.rip-dropdown-item__price {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Footer & Action Button */
+.rip-cart-dropdown__footer {
+  padding: 15px;
+  background: #fafafa;
+  border-top: 1px solid #e5e5e5;
+}
+
+.rip-cart-dropdown__total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.rip-total-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.rip-total-amount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.rip-btn-checkout {
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.rip-btn-checkout:hover {
+  background: #222222;
+}
+
+/* Itong class na ito ang isasalpak ng JS kapag naramdaman nitong nag-scroll pababa ang user */
+.rip-cart-dropdown.is-sucked {
+  animation: higopAnimation 0.4s forwards cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none; /* Hindi na pwedeng ma-click habang hinahatak pataas */
+}
+
+@keyframes higopAnimation {
+  0% {
+    transform: scale(1) translateY(0) skewX(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  40% {
+    /* Bahagyang hahaba o mai-stretch pababa bago tuluyang mahigop pataas */
+    transform: scaleX(0.8) scaleY(1.1) translateY(10px) skewX(-5deg);
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  100% {
+    /* Biglang liliit patungo sa pinaka-corner ng cart icon habang lumalabo */
+    transform: scale(0) translateY(-40px) translateX(20px) skewX(15deg);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+/* ============================================================
+   FIXED RIPARADISE SEARCH (Working Version)
+   ============================================================ */
+  /* Visible Search Icon sa Header */
+  .rip-search-trigger {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Icon color sa Hero Video (White) */
+  .site-header .rip-search-trigger .icon {
+    stroke: #ffffff;
+  }
+  
+  /* Icon color kapag naka-scroll (Black) */
+  .site-header--scrolled .rip-search-trigger .icon {
+    stroke: #000000;
+  }
+  
+  /* Search Dropdown Container */
+  .rip-search-wrapper {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 12px;
+    z-index: 10000;
+    display: none;
+  }
+  
+  .rip-search-wrapper.is-active {
+    display: block;
+  }
+  
+  .rip-search-box {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    width: 290px;
+    height: 50px;
+    padding: 0 16px;
+    border-radius: 0;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .rip-search-wrapper.is-active .rip-search-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  /* Input Field */
+  #ripSearchInput {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000000;
+    background: transparent;
+    padding: 0 12px;
+  }
+  
+  /* Close Button */
+  .rip-search-close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #000000;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+  
+  /* No Results */
+  .rip-search-no-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    text-align: center;
+    font-size: 11px;
+    padding: 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 6px;
+  }
+/* ============================================================
+   RIPARADISE 3D TRANSPARENT BLACK BUTTON
+   ============================================================ */
+
+/* 1. DEFAULT STATE (DESKTOP & MOBILE: BLACK LETTERING & TRANSPARENT BACKGROUND) */
+.hero-shop-btn, 
+.hero-content .btn, 
+.hero-section .btn {
+  /* Layout at Posisyon (Galing sa saktong bagsak mo, pare) */
+  transform: translateY(50px) !important; 
+  margin-top: 350px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  /* TRANSPARENT BACKGROUND AT LUTANG NA BLACK LETTERING */
+  background: transparent !important;       /* Salamin ang background */
+  border: 2px solid #000000 !important;     /* Makapal na solid black border */
+  color: #000000 !important;                /* Solid Jet Black na kulay ng letra */
+  
+  /* Aesthetics & Font */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
+  font-weight: 800;                         /* Ginawa nating Bold para mas lalong lutang ang pagkablack */
+  
+  /* Base 3D Shadow (Nakalapat pa sa sahig sa simula) */
+  box-shadow: 0px 0px 0px #000000 !important;
+  
+  transition: all 0.2s ease-in-out;         /* Mas mabilis nang konti para ramdam ang talbog ng 3D */
+  cursor: pointer;
+}
+
+/* 2. HOVER STATE (PARA SA DESKTOP - 3D LIFT ANIMATION) */
+@media (min-width: 769px) {
+  .hero-shop-btn:hover, 
+  .hero-content .btn:hover, 
+  .hero-section .btn:hover {
+    background: transparent !important;     /* Transparent pa rin gaya ng gusto mo */
+    color: #000000 !important;              /* Solid black pa rin ang letra */
+    border-color: #000000 !important;
+    
+    /* 3D POP LOGIC: Aangat ng 4px paitaas at pakaliwa, habang naiiwan ang solid black shadow sa ilalim */
+    transform: translateY(46px) translateX(-4px) !important; 
+    box-shadow: 4px 4px 0px #000000 !important;
+  }
+}
+
+/* 3. MOBILE VIEW (MAY INTEGRATED 3D EFFECT DIN KAPAG TINAP NG DALIRI) */
+@media (max-width: 768px) {
+  .hero-shop-btn, 
+  .hero-content .btn, 
+  .hero-section .btn {
+    transform: translateY(35px) !important;
+    margin-top: 380px !important;
+    
+    background: transparent !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    box-shadow: 0px 0px 0px #000000 !important;
+  }
+  
+  /* Kapag pinindot sa mobile gamit ang daliri, tatalbog din ang 3D effect nang swabe */
+  .hero-shop-btn:active, 
+  .hero-content .btn:active, 
+  .hero-section .btn:active {
+    transform: translateY(31px) translateX(-4px) !important; 
+    box-shadow: 4px 4px 0px #000000 !important;
+  }
+}
+/* ==========================================================================
+   ANTI-BLINK ULTRA-SMOOTH INFINITE LOOKBOOK MARQUEE
+   ========================================================================== */
+   .lookbook-marquee {
+    overflow: hidden;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .marquee-track {
+    display: inline-flex;
+    gap: 0;
+    width: max-content;
+    animation: scrollLeft 18s linear infinite;
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .marquee-track img {
+    height: 280px;
+    width: 350px;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: block;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+  
+  .lookbook-marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  
+  .marquee-bottom-divider {
+    border: 0;
+    border-top: 1px solid #e5e5e5;
+    margin: 0;
+    width: 100%;
+  }
+
+/* --------------------------------------------------------------------------
+   MOBILE NAV ACCOUNT & HEADER FIXES
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Hide desktop account dropdown on mobile */
+  .account-dropdown {
+    display: none !important;
+  }
+  
+  /* Fix header spacing to prevent logo/search overlap */
+  .site-header__actions {
+    gap: 12px;
+  }
+  
+  .site-header__logo-img {
+    max-width: 110px; /* Slightly smaller to give room */
+  }
+}
+
+/* MOBILE NAV ACCOUNT STYLES */
+.mobile-nav__divider {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+#mobileUserEmail {
+  word-break: break-all;
+  font-size: 11px;
+  color: #666;
+  display: block;
+  padding: 8px 0;
+}
+  
+  /* 3D Animation Matrix */
+  @keyframes scrollLeft {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0); /* Saktong hati dahil mathematically perfect na ang lapad ng dalawang set */
+    }
+  }
+/* --------------------------------------------------------------------------
+   PRODUCT SCROLL ANIMATION (SHOPIFY STYLE)
+   -------------------------------------------------------------------------- */
+
+/* Default state: Invisible and slightly moved down */
+.product-grid__item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Active state: Visible and in original position */
+.product-grid__item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Delay: Para hindi sabay-sabay ang labas */
+.product-grid__item:nth-child(1) { transition-delay: 0.0s; }
+.product-grid__item:nth-child(2) { transition-delay: 0.1s; }
+.product-grid__item:nth-child(3) { transition-delay: 0.2s; }
+.product-grid__item:nth-child(4) { transition-delay: 0.3s; }
+.product-grid__item:nth-child(5) { transition-delay: 0.4s; }
+.product-grid__item:nth-child(6) { transition-delay: 0.5s; }
+/* Positioning ng X Button sa Kanan */
+.p-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100; /* Para nasa ibabaw ng lahat */
+    
+    /* Design ng button */
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    line-height: 1;
+    color: #333; /* Pwede mong palitan ng #fff kung dark background ang modal */
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect para alam ng user na clickable siya */
+.p-modal-close:hover {
+    color: #000;
+    transform: scale(1.1);
+    opacity: 0.7;
+}
+
+/* MOBILE CART DROPDOWN FIX */
+@media (max-width: 768px) {
+  .rip-cart-dropdown {
+    position: fixed !important;
+    top: 80px !important;
+    left: 50% !important;
+    transform: translateX(-50%) scale(0.7) translateY(-20px) !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 92vw !important;
+    max-width: 360px !important;
+    height: auto !important;
+    max-height: 75vh !important;
+    overflow-y: auto !important;
+    z-index: 10000 !important;
+  }
+
+  .rip-cart-dropdown.is-active {
+    transform: translateX(-50%) scale(1) translateY(0) !important;
+  }
+
+  .rip-dropdown-item__remove {
+    min-width: 36px !important;
+    min-height: 36px !important;
+    font-size: 22px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    touch-action: manipulation;
+  }
+}
+/* EVENT SECTION */
+.event-section {
+  padding: 60px 0;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+.event-section__inner {
+  max-width: 680px;
+}
+
+.event-section__embed {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.event-section__title {
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 8px 0 20px;
+  color: #000000;
+}
+
+.event-section__desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 16px;
+}
+
+.event-section__prize {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+.event-section__btn {
+  display: inline-block;
+  text-decoration: none;
+}
+/* ============================================================
+   DROPDOWN CLOSE X BUTTON (Account + Cart)
+   ============================================================ */
+   .dropdown-close-x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    color: #999;
+    padding: 8px;
+    z-index: 10000;
+    pointer-events: auto;
+    transition: color 0.2s ease;
+}
+  
+  .dropdown-close-x:hover {
+    color: #000;
+  }
+  
+  .rip-cart-dropdown__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 15px 10px;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+  }
+  
+  .rip-cart-dropdown__title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #000;
+  }
+  
+/* --- Premium Modal System --- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: #fff;
+  width: 90%;
+  max-width: 480px;
+  padding: 48px 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.modal.is-active .modal__content {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.modal__close:hover {
+  color: #000;
+}
+
+.modal__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.modal__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+  color: #000;
+}
+
+.modal__subtitle {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* --- Auth Form Styles --- */
+.auth-form .form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e5e5e5;
+  font-size: 14px;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #000;
+  box-shadow: 0 0 0 1px #000;
+}
+
+.form-hint {
+  display: block;
+  font-size: 11px;
+  color: #888;
+  margin-top: 6px;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #666;
+}
+
+.checkbox-label input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #000;
+}
+
+.form-link {
+  color: #000;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.form-link:hover {
+  opacity: 0.7;
+}
+
+.btn--full {
+  width: 100%;
+  padding: 16px;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn--full:hover {
+  opacity: 0.85;
+}
+
+.modal__footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e5e5;
+  font-size: 13px;
+  color: #666;
+}
+
+/* --- Notification Toast --- */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 10000;
+  animation: slideIn 0.3s ease forwards;
+}
+
+.notification--success {
+  background: #000;
+  color: #fff;
+}
+
+.notification--error {
+  background: #c00000;
+  color: #fff;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+/* ============================================================
+   PREMIUM ACCOUNT DROPDOWN ITEM ANIMATIONS (FINAL)
+   ============================================================ */
+
+   .account-dropdown__menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: -10px;
+    background: #fff;
+    min-width: 220px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e5e5e5;
+    z-index: 1000;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.96);
+    transform-origin: top right;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.3s;
+  }
+  
+  .account-dropdown__menu.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  
+  @keyframes acctDropIn {
+    from { opacity: 0; transform: translateY(-10px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  
+  .dropdown-user {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.3s ease 0.04s, transform 0.3s ease 0.04s;
+  }
+  
+  .account-dropdown__menu.is-active .dropdown-user {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  @keyframes acctFadeX {
+    from { opacity: 0; transform: translateX(-6px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  
+  .dropdown-item {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      background 0.2s ease,
+      color 0.2s ease,
+      padding-left 0.22s ease;
+  }
+  
+  .dropdown-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 0;
+    background: #000000;
+    transition: height 0.2s ease;
+    border-radius: 0 2px 2px 0;
+  }
+  
+  .dropdown-item::after {
+    content: '→';
+    font-size: 12px;
+    color: #000000;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  
+  .dropdown-item:hover {
+    background: #f5f5f5;
+    color: #000000;
+    padding-left: 24px;
+  }
+  
+  .dropdown-item:hover::before {
+    height: 55%;
+  }
+  
+  .dropdown-item:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .dropdown-item .rip-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.07);
+    transform: scale(0);
+    animation: acctRipple 0.5s linear;
+    pointer-events: none;
+  }
+  
+  @keyframes acctRipple {
+    to { transform: scale(4); opacity: 0; }
+  }
+  
+  .account-dropdown__menu.is-active .dropdown-item:nth-child(1) {
+    opacity: 1; transform: translateX(0); transition-delay: 0.08s;
+  }
+  .account-dropdown__menu.is-active .dropdown-item:nth-child(2) {
+    opacity: 1; transform: translateX(0); transition-delay: 0.14s;
+  }
+  .account-dropdown__menu.is-active .dropdown-item:nth-child(3) {
+    opacity: 1; transform: translateX(0); transition-delay: 0.20s;
+  }
+  .account-dropdown__menu.is-active .dropdown-item:nth-child(4) {
+    opacity: 1; transform: translateX(0); transition-delay: 0.26s;
+  }
+  /* ============================================================
+   PAGE TRANSITION FADE (Account & Order History Links)
+   ============================================================ */
+   #page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: 999999;
+    opacity: 1;
+    pointer-events: none;
+  }

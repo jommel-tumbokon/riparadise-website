@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Received | RIPARADISE</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #fff; margin: 0; font-family: 'Inter', sans-serif; }
+    .waiting-box { text-align: center; padding: 40px; max-width: 400px; }
+    .waiting-box h1 { font-size: 18px; margin: 0 0 12px; font-weight: 700; letter-spacing: -0.5px; }
+    .waiting-box p { color: #666; margin: 0 0 32px; line-height: 1.6; font-size: 14px; }
+    .waiting-box a { 
+      background: #000; color: #fff; padding: 14px 32px; text-decoration: none; 
+      font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; 
+      display: inline-block;
+    }
+    .waiting-box a:hover { opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <div class="waiting-box">
+    <h1>We got your message.</h1>
+    <p>
+      Waiting for confirmation from our team.<br>
+      Check your Messenger inbox in 1-2 hours.
+    </p>
+    <a href="index.html">CONTINUE SHOPPING</a>
+  </div>
+  <script>
+    localStorage.removeItem('rip_cart');
+    localStorage.removeItem('rip_cod_pending');
+  </script>
+</body>
+</html>
