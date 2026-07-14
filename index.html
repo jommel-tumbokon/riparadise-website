@@ -236,29 +236,65 @@
     <div class="modal__content">
       <button class="modal__close" onclick="closeLoginModal()">&times;</button>
       <div class="modal__header">
-        <h2 class="modal__title">Welcome Back</h2>
-        <p class="modal__subtitle">Enter your credentials to access your account</p>
-      </div>
+
+        <h2
+            id="login-title"
+            class="modal__title">
+        </h2>
+    
+        <p
+            id="login-subtitle"
+            class="modal__subtitle">
+        </p>
+    
+    </div>
       <form id="loginForm" class="auth-form">
         <div class="form-group">
-          <label class="form-label">Email Address</label>
+          <label
+    id="login-email-label"
+    class="form-label">
+</label>
           <input type="email" class="form-input" id="loginEmail" required>
         </div>
         <div class="form-group">
-          <label class="form-label">Password</label>
+          <label
+    id="login-password-label"
+    class="form-label">
+</label>
           <input type="password" class="form-input" id="loginPassword" required>
         </div>
         <div class="form-options">
           <label class="checkbox-label">
             <input type="checkbox" id="rememberMe">
-            <span>Remember me</span>
-          </label>
-          <a href="#" class="form-link">Forgot password?</a>
+        
+            <span id="remember-me-text"></span>
+        
+        </label>
+        <a
+        id="forgot-password-text"
+        href="#"
+        class="form-link">
+    </a>
         </div>
-        <button type="submit" class="btn btn--black btn--full">Sign In</button>
+        <button
+    id="login-button"
+    type="submit"
+    class="btn btn--black btn--full">
+</button>
       </form>
       <div class="modal__footer">
-        <p>Don't have an account? <a href="#" onclick="closeLoginModal(); openRegisterModal();" class="form-link">Create one</a></p>
+        <p>
+
+          <span id="no-account-text"></span>
+      
+          <a
+              id="create-account-link"
+              href="#"
+              onclick="closeLoginModal(); openRegisterModal();"
+              class="form-link">
+          </a>
+      
+      </p>
       </div>
     </div>
   </div>
@@ -269,27 +305,60 @@
     <div class="modal__content">
       <button class="modal__close" onclick="closeRegisterModal()">&times;</button>
       <div class="modal__header">
-        <h2 class="modal__title">Create Account</h2>
-        <p class="modal__subtitle">Join RIPARADISE for exclusive access</p>
+        <h2
+    id="register-title"
+    class="modal__title">
+</h2>
+<p
+id="register-subtitle"
+class="modal__subtitle">
+</p>
       </div>
       <form id="registerForm" class="auth-form">
         <div class="form-group">
-          <label class="form-label">Full Name</label>
+          <label
+    id="register-name-label"
+    class="form-label">
+</label>
           <input type="text" class="form-input" id="registerName" required>
         </div>
         <div class="form-group">
-          <label class="form-label">Email Address</label>
+          <label
+    id="register-email-label"
+    class="form-label">
+</label>
           <input type="email" class="form-input" id="registerEmail" required>
         </div>
         <div class="form-group">
-          <label class="form-label">Password</label>
+          <label
+    id="register-password-label"
+    class="form-label">
+</label>
           <input type="password" class="form-input" id="registerPassword" required minlength="6">
-          <span class="form-hint">Minimum 6 characters</span>
+          <span
+    id="register-password-hint"
+    class="form-hint">
+</span>
         </div>
-        <button type="submit" class="btn btn--black btn--full">Create Account</button>
+        <button
+    id="register-button"
+    type="submit"
+    class="btn btn--black btn--full">
+</button>
       </form>
       <div class="modal__footer">
-        <p>Already have an account? <a href="#" onclick="closeRegisterModal(); openLoginModal();" class="form-link">Sign in</a></p>
+        <p>
+
+          <span id="already-have-text"></span>
+      
+          <a
+              id="sign-in-link"
+              href="#"
+              onclick="closeRegisterModal(); openLoginModal();"
+              class="form-link">
+          </a>
+      
+      </p>
       </div>
     </div>
   </div>
@@ -369,50 +438,66 @@
 
 </section>
 
-    <!-- SHOP SECTION -->
+  <!-- ============================================================ -->
+  <!-- SHOP SECTION -->
+  <!-- ============================================================ -->
+
     <section class="shop-section" id="shop" aria-labelledby="featured-collection-title">
       <article class="featured-collection">
         <header class="section-header container">
+
           <p
-    id="shop-eyebrow"
-    class="section-header__eyebrow">
-</p>
-        </header>
+              id="shop-eyebrow"
+              class="section-header__eyebrow">
+          </p>
+      
+          <h2
+              id="shop-title"
+              class="section-header__title">
+          </h2>
+      
+          <p
+              id="shop-description"
+              class="section-header__description">
+          </p>
+      
+      </header>
         <ul class="product-grid" id="productGrid"></ul>
       </article>
     </section>
     
     <div class="lookbook-marquee">
-      <div class="marquee-track">
-        <img src="assets/wallpaper/slidingpic1.png" alt="RIPARADISE Lifestyle">
-        <img src="assets/wallpaper/slidingpic2.png" alt="RIPARADISE Lifestyle">
-        <img src="assets/wallpaper/slidingpic3.png" alt="RIPARADISE Lifestyle">
-        <img src="assets/wallpaper/slidingpic4.png" alt="RIPARADISE Lifestyle">
-        <img src="assets/wallpaper/slidingpic1.png" alt="RIPARADISE Lifestyle">
-        <img src="assets/wallpaper/slidingpic2.png" alt="RIPARADISE Lifestyle">
-        <img src="assets/wallpaper/slidingpic3.png" alt="RIPARADISE Lifestyle">
-        <img src="assets/wallpaper/slidingpic4.png" alt="RIPARADISE Lifestyle">
-      </div>
+      <div
+    id="lookbook-track"
+    class="marquee-track">
+</div>
     </div>
     <hr class="marquee-bottom-divider">
 
-    <!-- EVENT SECTION -->
-    <section class="event-section" id="Event">
-      <div class="event-section__inner container">
-        <p
-    id="event-eyebrow"
-    class="section-header__eyebrow">
-</p>
+  <!-- ============================================================
+     EVENT SECTION
+============================================================ -->
+<section class="event-section" id="event">
+  <div class="event-section__inner container">
 
-<h2
-    id="event-title"
-    class="event-section__title">
-</h2>
-        <div class="event-section__embed">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZRii9fzN7R/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;"></blockquote>
-        </div>
-      </div>
-    </section>
+    <p id="event-eyebrow" class="section-header__eyebrow"></p>
+
+    <h2 id="event-title" class="event-section__title"></h2>
+
+    <!-- Wrapper para sa Instagram embed -->
+    <div class="event-section__embed">
+      <blockquote
+        id="instagram-embed"
+        class="instagram-media"
+        data-instgrm-permalink=""
+        data-instgrm-version="14">
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+
     
   </main>
 
@@ -432,8 +517,19 @@ class="modern-newsletter-form"
 action="#"
 method="POST">
           <div class="modern-newsletter-form__fields">
-            <input class="modern-newsletter-form__input" type="email" id="newsletter-email" name="email" placeholder="Email" autocomplete="email" required>
-            <button class="modern-newsletter-form__submit" type="submit" aria-label="Email">
+            <input
+    class="modern-newsletter-form__input"
+    type="email"
+    id="newsletter-email"
+    name="email"
+    placeholder=""
+    autocomplete="email"
+    required>
+    <button
+    id="newsletter-button"
+    class="modern-newsletter-form__submit"
+    type="submit"
+    aria-label="Newsletter Submit">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -441,7 +537,13 @@ method="POST">
             </button>
           </div>
         </form>
-        <p id="newsletter-success" style="display:none; color: #27ae60; font-size: 13px; margin-top: 12px; letter-spacing: 1px;">✓ SUBSCRIBED!</p>
+        <p
+    id="newsletter-success"
+    style="display:none; color: #27ae60; font-size: 13px; margin-top: 12px; letter-spacing: 1px;">
+
+    <span id="newsletter-success-text"></span>
+
+</p>
       </div>
       <div class="site-footer__social">
         <ul class="social-links" role="list">
@@ -484,7 +586,7 @@ method="POST">
           &copy;
           <span id="footer-year"></span>
           <span id="footer-shop-name"></span>.
-          All rights reserved.
+          <span id="footer-copyright"></span>
       </p>
   </footer> 
 
@@ -508,12 +610,24 @@ method="POST">
           <img id="modalProductImg" src="assets/images/funeral-tee.png" alt="Product Image" class="p-modal-img">
         </div>
         <div class="p-modal-details" id="modalDetailsContainer">
-          <h2 id="modalProductTitle" class="p-modal-title">RIPARADISE Funeral Black Tee</h2>
-          <div id="modalProductPrice" class="p-modal-price">₱1,299.00</div>
-          <p class="p-modal-stock-status">In stock · Ready to Ship</p>
+          <h2
+    id="modalProductTitle"
+    class="p-modal-title">
+</h2>
+<div
+id="modalProductPrice"
+class="p-modal-price">
+</div>
+          <p
+    id="modal-stock-status"
+    class="p-modal-stock-status">
+</p>
           <hr class="p-modal-divider">
           <div class="p-size-header-row">
-            <span class="p-section-label">Size</span>
+            <span
+    id="modal-size-label"
+    class="p-section-label">
+</span>
           </div>
           <div class="p-size-options-grid">
             <label class="p-size-box"><input type="radio" name="product-size" value="S" checked><span>S</span></label>
@@ -527,13 +641,25 @@ method="POST">
               <input type="number" id="modalQtyInput" class="p-qty-input" value="1" min="1" readonly>
               <button type="button" class="p-qty-btn" onclick="adjustModalQty(1)">&plus;</button>
             </div>
-            <button type="button" class="p-add-to-bag-btn" onclick="triggerAddToCart()">ADD TO MY BAG</button>
+            <button
+    id="modal-add-to-cart-button"
+    type="button"
+    class="p-add-to-bag-btn"
+    onclick="triggerAddToCart()">
+</button>
           </div>
           <hr class="p-modal-divider" style="margin-top: 30px;">
           <div id="modalSizeChartSection" class="p-size-chart-section">
-            <h3 class="p-chart-title">Size Chart (Adult Fit)</h3>
+            <h3
+    id="modal-size-chart-title"
+    class="p-chart-title">
+</h3>
             <table class="p-chart-table">
-              <thead><tr><th>SIZE</th><th>CHEST (INCHES)</th><th>LENGTH (INCHES)</th></tr></thead>
+              <thead><tr>
+                <th id="size-chart-size-header"></th>
+                <th id="size-chart-chest-header"></th>
+                <th id="size-chart-length-header"></th>
+              </tr></thead>
               <tbody>
                 <tr><td><strong>S</strong></td><td>36" - 38"</td><td>27"</td></tr>
                 <tr><td><strong>M</strong></td><td>39" - 41"</td><td>28"</td></tr>

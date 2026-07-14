@@ -4,11 +4,11 @@ const CONFIG = {
        BRANDING
     ========================================== */
 
-    shopName: "RIPARADISE",
+    shopName: "DSR",
 
     tagline: "THIS IS MY HERO",
 
-    logo: "assets/images/riparadiselogoupdated.png",
+    logo: "assets/products/dsrlogo1.png",
 
 
     /* ==========================================
@@ -21,9 +21,9 @@ const CONFIG = {
 
         subtitle: "",
 
-        button: "SHOP",
+        button: "BUY NOW",
 
-        video: "assets/wallpaper/hero-video.mp4"
+        video: "assets/products/dsrvideo1.mp4"
 
     },
 
@@ -46,86 +46,108 @@ const CONFIG = {
 
 products: [
     {
-        title: "TEST SHIRT",
+        title: "SAMPLE",
         price: "₱999.00",
-        image: "assets/images/funeral-tee.png",
+        image: "assets/products/products (9).png",
         alt: "Test",
-        meta: "Testing Product",
+        meta: "Test Product",
         badge: "NEW",
         badgeClass: "",
         hasSizeChart: true
     },
     {
-        title: "Rhinestone Tee",
+        title: "SAMPLE",
         price: "₱799.00",
-        image: "assets/images/rhinestone-tee.png",
+        image: "assets/products/products (2).png",
         alt: "Rhinestone Tee",
-        meta: "Graphic Tee · Custom Fit",
+        meta: "Test Product",
         badge: "New Arrival",
         badgeClass: "",
         hasSizeChart: true
     },
     {
-        title: "Rust Reaper Tee",
+        title: "SAMPLE",
         price: "₱799.00",
-        image: "assets/images/rust-reaper-tee.png",
-        alt: "Rust Reaper Tee",
-        meta: "Vintage Black · Limited",
+        image: "assets/products/products (3).png",
+        alt: "Test",
+        meta: "Test Product",
         badge: "",
         badgeClass: "",
         hasSizeChart: true
     },
     {
-        title: "RIPARADISE Keychain v1",
+        title: "SAMPLE",
         price: "₱350.00",
-        image: "assets/images/keychain-1.png",
-        alt: "RIPARADISE Keychain Type 1",
-        meta: "Accessories · Acrylic",
+        image: "assets/products/products (4).png",
+        alt: "Test",
+        meta: "Test Product",
         badge: "",
         badgeClass: "",
-        hasSizeChart: false
+        hasSizeChart: true
     },
     {
-        title: "RIPARADISE Keychain v2",
+        title: "SAMPLE",
         price: "₱350.00",
-        image: "assets/images/keychain-2.png",
-        alt: "RIPARADISE Keychain Type 2",
-        meta: "Accessories · Metal",
+        image: "assets/products/products (5).png",
+        alt: "Test",
+        meta: "Test Product",
         badge: "",
         badgeClass: "",
-        hasSizeChart: false
+        hasSizeChart: true
     },
     {
-        title: "RIPARADISE Keychain v3",
+        title: "SAMPLE",
         price: "₱350.00",
-        image: "assets/images/keychain-3.png",
-        alt: "RIPARADISE Keychain Type 3",
-        meta: "Accessories · Utility",
+        image: "assets/products/products (6).png",
+        alt: "Test",
+        meta: "Test Product",
         badge: "",
         badgeClass: "",
-        hasSizeChart: false
+        hasSizeChart: true
     },
     {
         title: "RIPARADISE Bag",
         price: "₱599.00",
-        image: "assets/images/bag.png",
-        alt: "RIPARADISE bag",
-        meta: "Accessories · Denim",
+        image: "assets/products/products (10).png",
+        alt: "Test",
+        meta: "Test Product",
         badge: "",
         badgeClass: "",
-        hasSizeChart: false
+        hasSizeChart: true
     },
     {
-        title: "RIPARADISE Pouch",
+        title: "SAMPLE",
         price: "₱699.00",
-        image: "assets/images/pouch.png",
-        alt: "RIPARADISE pouch",
-        meta: "Accessories · Denim",
+        image: "assets/products/products (11).png",
+        alt: "Test",
+        meta: "Test Product",
         badge: "",
         badgeClass: "",
-        hasSizeChart: false
+        hasSizeChart: true
     }
 ],
+
+/* ==========================================
+   PRODUCT MODAL
+========================================== */
+
+productModal: {
+
+    stockStatus: "In stock · Ready to Ship",
+
+    sizeChartTitle: "Size Chart (Adult Fit)",
+
+    sizeHeader: "SIZE",
+
+    chestHeader: "CHEST (INCHES)",
+
+    lengthHeader: "LENGTH (INCHES)",
+
+    sizeLabel: "Size",
+
+    addToCartButton: "ADD TO MY BAG"
+
+},
 
 /* ==========================================
    SOCIAL LINKS
@@ -135,9 +157,9 @@ socials: {
 
     instagram: "https://www.instagram.com/world.ph.3000.dsr.c/",
 
-    tiktok: "https://www.tiktok.com/@r.i.paradise",
+    tiktok: "https://www.tiktok.com/@world.ph.3000.dsr",
 
-    youtube: "https://www.youtube.com/@dial.seven7"
+    youtube: "https://www.youtube.com/@DSR.WORLDWIDE"
 
 },
 
@@ -147,9 +169,24 @@ socials: {
 
 newsletter: {
 
-    title: "JOIN",
+    title: "SUBSCRIBE",
 
-    formAction: "https://formspree.io/f/mvzjgrqz"
+    placeholder: "Enter your email",
+
+    formAction: "https://formspree.io/f/mvzjgrqz",
+
+    successMessage: "✓ SUBSCRIBED!"
+
+},
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer: {
+
+    copyright:
+        "All rights reserved."
 
 },
 
@@ -176,7 +213,7 @@ navigation: {
 
 seo: {
 
-    title: "TEST BRAND",
+    title: "DSR",
 
     description: "Premium streetwear inspired by modern culture.",
 
@@ -204,14 +241,14 @@ contact: {
 
 about: {
 
-    title: "ABOUT RIPARADISE",
+    title: "ABOUT DSR",
 
     subtitle: "Designed for modern street culture.",
 
     description:
-        "RIPARADISE creates premium apparel inspired by skateboarding, art, and everyday life. Every collection focuses on quality, comfort, and timeless design.",
+        "DSR creates premium apparel inspired by skateboarding, art, and everyday life. Every collection focuses on quality, comfort, and timeless design.",
 
-    image: "assets/images/about.jpg",
+    image: "assets/products/dsr.png",
 
     button: "LEARN MORE"
 
@@ -224,7 +261,12 @@ about: {
 
 shop: {
 
-    eyebrow: "Latest Collection"
+    eyebrow: "2026 Collection",
+
+    title: "Premium Streetwear",
+
+    description:
+        "Designed for modern activities."
 
 },
 
@@ -234,12 +276,93 @@ shop: {
 
 event: {
 
-    eyebrow: "Latest Event",
+    eyebrow: "LATEST POST",
 
-    title: "SKUH SKATE CLIP CONTEST",
+    title: "SKATE CLIPS",
 
-    instagram:
-        "https://www.instagram.com/p/DZRii9fzN7R/"
+    instagramEmbed:
+        "https://www.instagram.com/p/DaI_kreiIGt/"
+
+},
+
+/* ==========================================
+   LOOKBOOK
+========================================== */
+
+lookbook: {
+
+    images: [
+
+        "assets/products/slidingpic (1).png",
+
+        "assets/products/slidingpic (2).png",
+
+        "assets/products/slidingpic (3).png",
+
+        "assets/products/slidingpic (4).png"
+
+    ]
+
+},
+
+/* ==========================================
+   AUTH
+========================================== */
+
+auth: {
+
+    loginTitle: "Welcome Back",
+
+    loginSubtitle:
+        "Enter your credentials to access your account",
+
+    registerTitle:
+        "Create Account",
+
+    registerSubtitle:
+        "Join RIPARADISE for exclusive access",
+
+    signInButton:
+        "Sign In",
+
+    createAccountButton:
+        "Create Account",
+
+    rememberMe:
+        "Remember me",
+
+    forgotPassword:
+        "Forgot password?",
+
+    noAccount:
+        "Don't have an account?",
+
+    alreadyHave:
+        "Already have an account?",
+
+    createOne:
+        "Create one",
+
+    signInLink:
+        "Sign in",
+
+    loginEmailLabel:
+        "Email Address",
+    
+    loginPasswordLabel:
+        "Password",
+    
+    registerNameLabel:
+        "Full Name",
+    
+    registerEmailLabel:
+        "Email Address",
+    
+    registerPasswordLabel:
+        "Password",
+    
+    registerPasswordHint:
+        "Minimum 6 characters",
 
 },
 

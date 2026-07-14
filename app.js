@@ -51,6 +51,7 @@ function loadHero() {
 
     // Hero button
     document.getElementById("hero-btn").textContent = CONFIG.hero.button;
+    
 
 }
 
@@ -91,8 +92,17 @@ function loadAbout() {
 
 function loadShop() {
 
+    // Eyebrow
     document.getElementById("shop-eyebrow").textContent =
         CONFIG.shop.eyebrow;
+
+    // Title
+    document.getElementById("shop-title").textContent =
+        CONFIG.shop.title;
+
+    // Description
+    document.getElementById("shop-description").textContent =
+        CONFIG.shop.description;
 
 }
 
@@ -110,7 +120,20 @@ function loadEvent() {
     document.getElementById("event-title").textContent =
         CONFIG.event.title;
 
+    // Instagram Embed
+    document.getElementById("instagram-embed")
+        .setAttribute(
+            "data-instgrm-permalink",
+            CONFIG.event.instagramEmbed
+        );
+
+    // Refresh Instagram Embed
+    if (window.instgrm) {
+        window.instgrm.Embeds.process();
+    }
+
 }
+
 
 /* ==========================================================
    INITIALIZE WEBSITE
@@ -131,11 +154,15 @@ function init(){
 
     loadEvent();
 
+    loadLookbook();
+
     loadTheme();
 
     loadFooter();
 
     loadNewsletter();
+
+    loadAuth();
 
     loadNavigation();
 
@@ -214,6 +241,10 @@ function loadFooter() {
     // Shop Name
     document.getElementById("footer-shop-name").textContent =
     CONFIG.shopName;
+
+    // Copyright
+    document.getElementById("footer-copyright").textContent =
+    CONFIG.footer.copyright;
 }   
 
 /* ==========================================================
@@ -222,13 +253,21 @@ function loadFooter() {
 
 function loadNewsletter() {
 
-    // Newsletter title
+    // Newsletter Title
     document.getElementById("newsletter-title").textContent =
         CONFIG.newsletter.title;
+
+    // Newsletter Placeholder
+    document.getElementById("newsletter-email").placeholder =
+        CONFIG.newsletter.placeholder;
 
     // Newsletter Form Action
     document.getElementById("newsletter-form").action =
         CONFIG.newsletter.formAction;
+
+    // Newsletter Success Message
+    document.getElementById("newsletter-success-text").textContent =
+        CONFIG.newsletter.successMessage;
 
 }
 
@@ -286,4 +325,124 @@ function loadSEO() {
 
 }
 
+/* ==========================================================
+   LOOKBOOK
+========================================================== */
 
+function loadLookbook() {
+
+    const track =
+        document.getElementById("lookbook-track");
+
+    // Clear existing images
+    track.innerHTML = "";
+
+    // Duplicate images for infinite marquee
+    const images = [
+        ...CONFIG.lookbook.images,
+        ...CONFIG.lookbook.images
+    ];
+
+    images.forEach((imagePath) => {
+
+        const img = document.createElement("img");
+
+        img.src = imagePath;
+
+        img.alt = `${CONFIG.shopName} Lookbook`;
+
+        track.appendChild(img);
+
+    });
+
+}
+
+/* ==========================================================
+   ABOUT SECTION FADE-IN ANIMATION
+   ========================================================== */
+   
+document.addEventListener("DOMContentLoaded", () => {
+    const aboutSection = document.querySelector(".about-section__inner");
+  
+    if (aboutSection) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              aboutSection.classList.add("is-visible");
+              observer.unobserve(aboutSection); // stop observing after animation
+            }
+          });
+        },
+        { threshold: 0.2 } // trigger kapag 20% visible
+      );
+  
+      observer.observe(aboutSection);
+    }
+  });
+  
+  /* ==========================================================
+   AUTH
+========================================================== */
+
+function loadAuth() {
+
+    /* Login */
+
+    document.getElementById("login-title").textContent =
+        CONFIG.auth.loginTitle;
+
+    document.getElementById("login-subtitle").textContent =
+        CONFIG.auth.loginSubtitle;
+
+    document.getElementById("login-email-label").textContent =
+        CONFIG.auth.loginEmailLabel;
+    
+    document.getElementById("login-password-label").textContent =
+        CONFIG.auth.loginPasswordLabel;    
+
+    document.getElementById("remember-me-text").textContent =
+        CONFIG.auth.rememberMe;
+
+    document.getElementById("forgot-password-text").textContent =
+        CONFIG.auth.forgotPassword;
+
+    document.getElementById("login-button").textContent =
+        CONFIG.auth.signInButton;
+
+    document.getElementById("no-account-text").textContent =
+        CONFIG.auth.noAccount;
+
+    document.getElementById("create-account-link").textContent =
+        CONFIG.auth.createOne;
+
+    /* Register */
+
+    document.getElementById("register-title").textContent =
+        CONFIG.auth.registerTitle;
+
+    document.getElementById("register-subtitle").textContent =
+        CONFIG.auth.registerSubtitle;
+    
+    document.getElementById("register-name-label").textContent =
+        CONFIG.auth.registerNameLabel;
+    
+    document.getElementById("register-email-label").textContent =
+        CONFIG.auth.registerEmailLabel;
+    
+    document.getElementById("register-password-label").textContent =
+        CONFIG.auth.registerPasswordLabel;
+    
+    document.getElementById("register-password-hint").textContent =
+        CONFIG.auth.registerPasswordHint;    
+        
+    document.getElementById("register-button").textContent =
+        CONFIG.auth.createAccountButton;
+
+    document.getElementById("already-have-text").textContent =
+        CONFIG.auth.alreadyHave;
+
+    document.getElementById("sign-in-link").textContent =
+        CONFIG.auth.signInLink;
+
+}

@@ -21,8 +21,32 @@ function openProductModal(title, price, imgSrc, showSizeChart = true) {
       if (sizeGrid) sizeGrid.style.display = 'none';
     }
     if (title) document.getElementById('modalProductTitle').innerText = title;
+
     if (price) document.getElementById('modalProductPrice').innerText = price;
+
     if (imgSrc) document.getElementById('modalProductImg').src = imgSrc;
+
+    document.getElementById("modal-stock-status").textContent =
+    CONFIG.productModal.stockStatus;
+
+    document.getElementById("modal-size-chart-title").textContent =
+    CONFIG.productModal.sizeChartTitle;
+
+    document.getElementById("size-chart-size-header").textContent =
+    CONFIG.productModal.sizeHeader;
+
+    document.getElementById("size-chart-chest-header").textContent =
+    CONFIG.productModal.chestHeader;
+
+    document.getElementById("size-chart-length-header").textContent =
+    CONFIG.productModal.lengthHeader;
+
+    document.getElementById("modal-add-to-cart-button").textContent =
+    CONFIG.productModal.addToCartButton;
+
+    document.getElementById("modal-size-label").textContent =
+    CONFIG.productModal.sizeLabel;
+    
     document.getElementById('modalQtyInput').value = 1;
     modal.classList.add('is-active');
     document.body.style.overflow = 'hidden';

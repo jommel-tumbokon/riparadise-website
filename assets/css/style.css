@@ -480,6 +480,7 @@
   /* --------------------------------------------------------------------------
      5. FEATURED PRODUCTS & GRID SYSTEM (CLEAN BLACK ON WHITE)
      -------------------------------------------------------------------------- */
+     
   .shop-section {
     padding: var(--space-xl) 0;
     background-color: #ffffff !important;
@@ -506,6 +507,7 @@
     gap: var(--space-md);
   }
   
+  
   .section-header__title {
     margin: 0;
     font-size: clamp(1.25rem, 4vw, 1.75rem);
@@ -525,6 +527,20 @@
     border-bottom: 1px solid #000000;
     color: #000000 !important;
   }
+
+  .section-header__description {
+
+    max-width: 620px;
+
+    margin: 16px 0 0;
+
+    font-size: var(--font-size-base);
+
+    line-height: 1.7;
+
+    color: var(--color-text-muted);
+
+}
   /* ==========================================================================
    6. PRODUCT GRID: BASE STYLES (Eto ang default para sa Mobile)
    ========================================================================== */
@@ -811,9 +827,25 @@
     color: #000000 !important;
   }
   
-  /* --------------------------------------------------------------------------
+  
+/* --------------------------------------------------------------------------
+   ABOUT SECTION ANIMATION
+   -------------------------------------------------------------------------- */
+   .about-section__inner {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .about-section__inner.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+/* --------------------------------------------------------------------------
      9. MOBILE DRAWER & SAFEGUARDS SYSTEM (UNDER 768PX)
      -------------------------------------------------------------------------- */
+  
   @media (max-width: 768px) {
     .site-nav {
       display: none; 
@@ -888,6 +920,55 @@
     }
   }
   
+  /* --------------------------------------------------------------------------
+   MOBILE ABOUT SECTION FIX
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .about-section__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-section__media {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .about-section__image {
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .about-section__content {
+    padding: 0 20px;
+  }
+
+  .about-section__title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .about-section__subtitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .about-section__description {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .about-section .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
   /* PREMIUM WHITE MOBILE DRAWER SETTINGS */
   .nav-toggle {
     display: none;
@@ -1889,7 +1970,9 @@
 
 .event-section__inner {
   max-width: 680px;
+  margin: 0 auto; /* center the inner container */
 }
+
 
 .event-section__embed {
   display: flex;
