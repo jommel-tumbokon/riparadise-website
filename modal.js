@@ -17,9 +17,13 @@ if (price) document.getElementById('modalProductPrice').innerText = price;
 if (imgSrc) document.getElementById('modalProductImg').src = imgSrc;
 if (title) document.getElementById('modalProductImg').alt = title;
    
-       // B. Handle Size Chart Visibility & Rendering
-       toggleSizeChartVisibility(showSizeChart);
-       if (showSizeChart) renderSizeChart();
+              // B. Handle Size Chart Visibility & Rendering
+              toggleSizeChartVisibility(showSizeChart);
+       
+              if (showSizeChart) {
+                  renderSizeChart();
+                  renderSizeOptions();
+              }
    
        // C. Load Config Text to Modal Elements
        updateModalTextFromConfig();
@@ -30,7 +34,7 @@ if (title) document.getElementById('modalProductImg').alt = title;
    
        // E. Open Modal & Lock Background Scroll
        modal.classList.add('is-active');
-       document.body.style.overflow = 'hidden'; // Prevent background scrolling
+       document.body.style.overflow = 'hidden';
        isModalOpen = true;
        document.addEventListener('keydown', handleEscKey);
    }
@@ -82,21 +86,41 @@ function updateModalTextFromConfig() {
 
 /* Render Size Chart Rows */
 function renderSizeChart() {
+    const sizeChartBody = document.getElementById("modal-size-chart-body");
+    if (!sizeChartBody || !CONFIG.productModal.sizeChartRows) return;
 
-  const sizeChartBody = document.getElementById("modal-size-chart-body");
+    sizeChartBody.innerHTML = CONFIG.productModal.sizeChartRows
+        .map(row => `
+            <tr>
+                <td><strong>${row.size}</strong></td>
+                <td>${row.chest}</td>
+                <td>${row.length}</td>
+            </tr>
+        `)
+        .join("");
+}
 
-  if (!sizeChartBody || !CONFIG.productModal.sizeChartRows) return;
+/* Render Size Options (S, M, L, XL) dynamically from CONFIG */
+function renderSizeOptions() {
+    const container = document.getElementById("modal-size-options-grid");
+    if (!container || !CONFIG.productModal.sizeChartRows) return;
 
-  sizeChartBody.innerHTML = CONFIG.productModal.sizeChartRows
-      .map(row => `
-          <tr>
-              <td><strong>${row.size}</strong></td>
-              <td>${row.chest}</td>
-              <td>${row.length}</td>
-          </tr>
-      `)
-      .join("");
+    // Linisin muna ang lalagyan bago maglagay ng bago
+    container.innerHTML = "";
 
+    // I-loop ang sizes mula sa CONFIG
+    CONFIG.productModal.sizeChartRows.forEach((row, index) => {
+        const isChecked = index === 0 ? "checked" : ""; // Ang unang size (S) ang default na check
+        
+        const labelHTML = `
+            <label class="p-size-box">
+                <input type="radio" name="product-size" value="${row.size}" ${isChecked}>
+                <span>${row.size}</span>
+            </label>
+        `;
+        
+        container.innerHTML += labelHTML;
+    });
 }
 
 
@@ -181,31 +205,62 @@ function toggleSizeChartVisibility(show) {
    }
    
    
-   /* ==========================================================
-      5. EVENT LISTENERS & UTILITIES
-      ========================================================== */
-   function handleEscKey(event) {
-       if (event.key === 'Escape' && isModalOpen) {
-           closeProductModal();
-       }
-   }
-   
-   // Close modal when clicking the backdrop (outside the modal content)
-   document.addEventListener('click', (event) => {
-       const modal = document.getElementById('productQuickViewModal');
-       if (event.target === modal) {
-           closeProductModal();
-       }
-   });
-   
-   function scrollToSizeChart() {
-       const targetSection = document.getElementById('modalSizeChartSection');
-       const detailsPanel = document.getElementById('modalDetailsContainer');
-       
-       if (targetSection && detailsPanel) {
-           detailsPanel.scrollTo({ 
-               top: targetSection.offsetTop - 20, 
-               behavior: 'smooth' 
-           });
-       }
-   }
+  /* ==========================================================
+   5. EVENT LISTENERS & UTILITIES
+   ========================================================== */
+
+// A. NEW: Attach Event Listeners to Modal Buttons (Replacing inline onclick)
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Modal Close Button (X)
+    const closeBtn = document.getElementById('modal-close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeProductModal);
+    }
+
+    // 2. Quantity Minus Button
+    const qtyMinusBtn = document.getElementById('modal-qty-minus');
+    if (qtyMinusBtn) {
+        qtyMinusBtn.addEventListener('click', () => adjustModalQty(-1));
+    }
+
+    // 3. Quantity Plus Button
+    const qtyPlusBtn = document.getElementById('modal-qty-plus');
+    if (qtyPlusBtn) {
+        qtyPlusBtn.addEventListener('click', () => adjustModalQty(1));
+    }
+
+    // 4. Add to Cart Button
+    const addToCartBtn = document.getElementById('modal-add-to-cart-button');
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', triggerAddToCart);
+    }
+});
+
+// B. EXISTING: Close modal on ESC key
+function handleEscKey(event) {
+    if (event.key === 'Escape' && isModalOpen) {
+        closeProductModal();
+    }
+}
+
+// C. EXISTING: Close modal when clicking the backdrop (outside the modal content)
+document.addEventListener('click', (event) => {
+    const modal = document.getElementById('productQuickViewModal');
+    if (event.target === modal) {
+        closeProductModal();
+    }
+});
+
+// D. EXISTING: Scroll to size chart utility
+function scrollToSizeChart() {
+    const targetSection = document.getElementById('modalSizeChartSection');
+    const detailsPanel = document.getElementById('modalDetailsContainer');
+    
+    if (targetSection && detailsPanel) {
+        detailsPanel.scrollTo({ 
+            top: targetSection.offsetTop - 20, 
+            behavior: 'smooth' 
+        });
+    }
+}

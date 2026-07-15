@@ -1689,7 +1689,7 @@
   }
   
   /* Input Field */
-  #ripSearchInput {
+  #search-input {
     flex: 1;
     border: none;
     outline: none;
@@ -1697,8 +1697,8 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #000000;
-    background: transparent;
+    color: #000000 !important; 
+    background: #ffffff !important;
     padding: 0 12px;
   }
   
@@ -2421,3 +2421,21 @@
     pointer-events: none;
     opacity: 0;
   }
+
+  /* MOBILE FIX: Iwas White Space sa Baba at Ayusin ang Button Position */
+@media (max-width: 768px) {
+    
+  /* 1. Ayusin ang Hero Section Height para sa Mobile */
+  .hero-video-section {
+      height: 100dvh !important; /* 'dvh' ay dynamic viewport height, perfect para sa mobile browsers */
+      overflow: hidden !important; /* Iwas lumampas ang content */
+  }
+
+  /* 2. Bawasan ang Margin ng Button sa Mobile */
+  .hero-shop-btn, 
+  .hero-content .btn, 
+  .hero-section .btn {
+      margin-top: 150px !important; /* Bawasan mula 350px papuntang 150px (adjust mo kung kailangan) */
+      transform: translateY(0) !important; /* Alisin ang extra shift */
+  }
+}

@@ -46,7 +46,7 @@ const CONFIG = {
 
 products: [
     {
-        title: "SAMPLE",
+        title: "SAMPLE1",
         price: "₱999.00",
         image: "assets/products/products (9).png",
         alt: "Test",
@@ -56,7 +56,7 @@ products: [
         hasSizeChart: true
     },
     {
-        title: "SAMPLE",
+        title: "SAMPLE2",
         price: "₱799.00",
         image: "assets/products/products (2).png",
         alt: "Rhinestone Tee",
@@ -66,7 +66,7 @@ products: [
         hasSizeChart: true
     },
     {
-        title: "SAMPLE",
+        title: "SAMPLE3",
         price: "₱799.00",
         image: "assets/products/products (3).png",
         alt: "Test",
@@ -76,7 +76,7 @@ products: [
         hasSizeChart: true
     },
     {
-        title: "SAMPLE",
+        title: "SAMPLE4",
         price: "₱350.00",
         image: "assets/products/products (4).png",
         alt: "Test",
@@ -86,7 +86,7 @@ products: [
         hasSizeChart: true
     },
     {
-        title: "SAMPLE",
+        title: "SAMPLE5",
         price: "₱350.00",
         image: "assets/products/products (5).png",
         alt: "Test",
@@ -96,7 +96,7 @@ products: [
         hasSizeChart: true
     },
     {
-        title: "SAMPLE",
+        title: "SAMPLE6",
         price: "₱350.00",
         image: "assets/products/products (6).png",
         alt: "Test",
@@ -106,7 +106,7 @@ products: [
         hasSizeChart: true
     },
     {
-        title: "RIPARADISE Bag",
+        title: "SAMPLE7",
         price: "₱599.00",
         image: "assets/products/products (10).png",
         alt: "Test",
@@ -116,7 +116,7 @@ products: [
         hasSizeChart: true
     },
     {
-        title: "SAMPLE",
+        title: "SAMPLE8",
         price: "₱699.00",
         image: "assets/products/products (11).png",
         alt: "Test",

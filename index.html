@@ -650,7 +650,7 @@ method="POST">
   <!-- PRODUCT QUICK VIEW MODAL -->
   <div id="productQuickViewModal" class="p-modal-overlay">
     <div class="p-modal-container">
-      <button type="button" class="p-modal-close-btn" onclick="closeProductModal()" aria-label="Close modal">&times;</button>
+      <button type="button" id="modal-close-btn" class="p-modal-close-btn" aria-label="Close modal">&times;</button>
       <div class="p-modal-layout">
         <div class="p-modal-media">
           <img id="modalProductImg" src="" alt="" class="p-modal-img">
@@ -670,28 +670,19 @@ class="p-modal-price">
 </p>
           <hr class="p-modal-divider">
           <div class="p-size-header-row">
-            <span
-    id="modal-size-label"
-    class="p-section-label">
-</span>
+            <span id="modal-size-label" class="p-section-label"></span>
           </div>
-          <div class="p-size-options-grid">
-            <label class="p-size-box"><input type="radio" name="product-size" value="S" checked><span>S</span></label>
-            <label class="p-size-box"><input type="radio" name="product-size" value="M"><span>M</span></label>
-            <label class="p-size-box"><input type="radio" name="product-size" value="L"><span>L</span></label>
-            <label class="p-size-box"><input type="radio" name="product-size" value="XL"><span>XL</span></label>
+          
+          <div class="p-size-options-grid" id="modal-size-options-grid">
+            <!-- Dito na maglalagay ng buttons ang JavaScript -->
           </div>
           <div class="p-action-row">
             <div class="p-quantity-selector">
-              <button type="button" class="p-qty-btn" onclick="adjustModalQty(-1)">&minus;</button>
+              <button type="button" id="modal-qty-minus" class="p-qty-btn">&minus;</button>
               <input type="number" id="modalQtyInput" class="p-qty-input" value="1" min="1" readonly>
-              <button type="button" class="p-qty-btn" onclick="adjustModalQty(1)">&plus;</button>
+              <button type="button" id="modal-qty-plus" class="p-qty-btn">&plus;</button>
             </div>
-            <button
-    id="modal-add-to-cart-button"
-    type="button"
-    class="p-add-to-bag-btn"
-    onclick="triggerAddToCart()">
+            <button id="modal-add-to-cart-button" type="button" class="p-add-to-bag-btn">
 </button>
           </div>
           <hr class="p-modal-divider" style="margin-top: 30px;">
