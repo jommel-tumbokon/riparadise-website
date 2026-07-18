@@ -432,9 +432,8 @@
    ABOUT SECTION
 ========================================================== */
 
-.about-section {
-  padding: 160px 0;
-  background: var(--color-bg);
+.about-section{
+  padding:80px 0;
 }
 
 .about-section__inner {

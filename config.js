@@ -27,7 +27,7 @@ modules: {
 
      tagline: "",
 
-     logo: "assets/products/LOGO.png",
+     logo: "assets/products/LOGO.webp",
 
 /* ==========================================
        HERO SECTION
@@ -38,7 +38,7 @@ modules: {
         button: "BOOK APPOINTMENT", 
         buttonLink: "#contact",     
         video: "", 
-        image: "assets/products/collage.png",
+        image: "assets/products/collage.webp",
     },
 
     /* ==========================================
@@ -63,7 +63,7 @@ products: [
     {
         title: "SAMPLE1",
         price: "₱999.00",
-        image: "assets/products/products (9).png",
+        image: "assets/products/products (9).webp",
         alt: "Test",
         meta: "Test Product",
         badge: "NEW",
@@ -73,7 +73,7 @@ products: [
     {
         title: "SAMPLE2",
         price: "₱799.00",
-        image: "assets/products/products (2).png",
+        image: "assets/products/products (2).webp",
         alt: "Rhinestone Tee",
         meta: "Test Product",
         badge: "New Arrival",
@@ -83,7 +83,7 @@ products: [
     {
         title: "SAMPLE3",
         price: "₱799.00",
-        image: "assets/products/products (3).png",
+        image: "assets/products/products (3).webp",
         alt: "Test",
         meta: "Test Product",
         badge: "",
@@ -93,7 +93,7 @@ products: [
     {
         title: "SAMPLE4",
         price: "₱350.00",
-        image: "assets/products/products (4).png",
+        image: "assets/products/products (4).webp",
         alt: "Test",
         meta: "Test Product",
         badge: "",
@@ -103,7 +103,7 @@ products: [
     {
         title: "SAMPLE5",
         price: "₱350.00",
-        image: "assets/products/products (5).png",
+        image: "assets/products/products (5).webp",
         alt: "Test",
         meta: "Test Product",
         badge: "",
@@ -113,7 +113,7 @@ products: [
     {
         title: "SAMPLE6",
         price: "₱350.00",
-        image: "assets/products/products (6).png",
+        image: "assets/products/products (6).webp",
         alt: "Test",
         meta: "Test Product",
         badge: "",
@@ -123,7 +123,7 @@ products: [
     {
         title: "SAMPLE7",
         price: "₱599.00",
-        image: "assets/products/products (10).png",
+        image: "assets/products/products (10).webp",
         alt: "Test",
         meta: "Test Product",
         badge: "",
@@ -133,7 +133,7 @@ products: [
     {
         title: "SAMPLE8",
         price: "₱699.00",
-        image: "assets/products/products (11).png",
+        image: "assets/products/products (11).webp",
         alt: "Test",
         meta: "Test Product",
         badge: "",
@@ -284,7 +284,7 @@ seo: {
 
     description: "Premium streetwear inspired by modern culture.",
 
-    favicon: "assets/images/favicon.png"
+    favicon: "assets/images/favicon.webp"
 
 },
 
@@ -315,7 +315,7 @@ about: {
     description:
         "Every line I draw tells a story — not just on skin, but in the confidence and identity of the person wearing it. My craft is precision, my art is emotion, and every tattoo is a mark of trust.",
 
-    image: "assets/products/jovit.png",
+    image: "assets/products/jovit.webp",
 
     button: "VIEW GALLERY"
 
@@ -360,13 +360,13 @@ lookbook: {
 
     images: [
 
-        "assets/products/slidingpic (1).png",
+        "assets/products/slidingpic (1).webp",
 
-        "assets/products/slidingpic (2).png",
+        "assets/products/slidingpic (2).webp",
 
-        "assets/products/slidingpic (3).png",
+        "assets/products/slidingpic (3).webp",
 
-        "assets/products/slidingpic (4).png"
+        "assets/products/slidingpic (4).webp"
 
     ]
 
@@ -472,7 +472,7 @@ cart: {
 
 booking: {
 
-    bgImage: "assets/products/collage.png",
+    bgImage: "assets/products/collage.webp",
 
     title: "Book Your Session",
 
@@ -572,12 +572,12 @@ gallery: {
     subtitle: "MY ARTWORK",
     buttonText: "VIEW GALLERY",  // Para sa About section button
     images: [
-        "assets/products/slidingpic (1).png",
-        "assets/products/slidingpic (2).png",
-        "assets/products/slidingpic (3).png",
-        "assets/products/slidingpic (4).png",
-        "assets/products/jovit (2).png",
-        "assets/products/jovit (3).png"
+        "assets/products/slidingpic (1).webp",
+        "assets/products/slidingpic (2).webp",
+        "assets/products/slidingpic (3).webp",
+        "assets/products/slidingpic (4).webp",
+        "assets/products/jovit (2).webp",
+        "assets/products/jovit (3).webp"
         
     ]
 },
